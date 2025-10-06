@@ -22,7 +22,6 @@
                 {% endfor %}
               </select>
             </div>
-            <!-- FALTA MOSTRAR LOS PRODUCTOS ACTUALES DEL USUARIO -->
             <div class="mb-3">
               <label class="form-label">Productos</label>
               <div class="border p-2" style="max-height: 150px; overflow-y:auto;">
@@ -31,7 +30,8 @@
                     <input class="form-check-input producto-check" type="checkbox" 
                         name="producto_id" 
                         value="{{ p.producto_id }}" 
-                        data-precio="{{ p.precio }}">
+                        data-precio="{{ p.precio }}"
+                        {% if p.producto_id in carrito.producto_id %}checked{% endif %}>
                     <label class="form-check-label">
                     {{ p.producto_id }} - {{ p.nombre }} ({{ p.precio }} MXN)
                     </label>
@@ -39,10 +39,9 @@
                 {% endfor %}
               </div>
             </div>
-            <!-- FALTA MOSTRAR EL TOTAL ACTUAL DE LOS PRODUCTOS DEL USUARIO -->
             <div class="mb-3">
               <label class="form-label">Total</label>
-              <input type="number" step="0.01" id="total" class="form-control" readonly>
+              <input type="number" step="0.01" id="total" name="total" class="form-control" value="{{ carrito.total }}" readonly>
             </div>
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-success">Guardar Carrito</button>

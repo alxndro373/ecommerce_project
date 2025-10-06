@@ -41,7 +41,7 @@ def editar(id):
             {"_id": ObjectId(id)},
             {
                 "$set": {
-                    "usuario_id": [int(uid) for uid in request.form.getList('usuario_id')],
+                    "usuario_id": [int(uid) for uid in request.form.getlist('usuario_id')],
                     "producto_id": [int(pid) for pid in request.form.getlist('producto_id')],
                     "total": float(request.form['total']),
                     "fecha_actualizacion": datetime.utcnow()
