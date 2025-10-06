@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center fw-bold mb-4">Actualizar Usuario</h2>
+  <form action="{{ url_for('usuarios.editar', id=usuario._id) }}" method="POST" class="border p-4 rounded shadow-sm bg-light">
+    <div class="mb-3">
+      <label for="usuario_id" class="form-label fw-bold">ID Usuario</label>
+      <input type="text" id="usuario_id" name="usuario_id" class="form-control" value="{{ usuario.usuario_id }}" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="nombre" class="form-label fw-bold">Nombre</label>
+      <input type="text" id="nombre" name="nombre" class="form-control" value="{{ usuario.nombre }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="correo" class="form-label fw-bold">Correo</label>
+      <input type="email" id="correo" name="correo" class="form-control" value="{{ usuario.correo }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="telefono" class="form-label fw-bold">Teléfono</label>
+      <input type="text" id="telefono" name="telefono" class="form-control" value="{{ usuario.telefono }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="direccion" class="form-label fw-bold">Dirección</label>
+      <textarea id="direccion" name="direccion" class="form-control" rows="2" required>{{ usuario.direccion }}</textarea>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-warning fw-bold">Guardar Cambios</button>
+      <a href="{{ url_for('usuarios.listar') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
