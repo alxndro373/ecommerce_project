@@ -30,6 +30,7 @@ def crear():
 def editar(id):
     producto = db.productos.find_one({"_id": ObjectId(id)})
     categoria = list(db.categorias.find())
+    
     if not producto:
         return "Producto no encontrado", 404
     
