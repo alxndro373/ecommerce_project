@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center fw-bold text-dark mb-4">Gestión de Carrito</h2>
+
+  <div class="text-center mb-4">
+    <a href="{{ url_for('carrito.crear') }}" class="btn btn-success">Crear nuevo carrito</a>
+  </div>
+
+  {% if carritos %}
+  <table class="table table-bordered text-center">
+    <thead class="table-info">
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Producto</th>
+        <th>Total</th>
+        <th>Fecha Actualizacion</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for carrito in carritos %}
+      <tr>
+        <td>{{ carrito.carrito_id }}</td>
+        <td>{{ carrito.usuario_id }}</td>
+        <td>{{ carrito.producto_id }}</td>
+        <td>{{ carrito.total }}</td>
+        <td>{{ carrito.fecha_actualizacion }}</td>
+        <td>
+          <a href="{{ url_for('carrito.editar', id=carrito._id) }}" class="btn btn-primary">Editar</a>
+          <a href="{{ url_for('carrito.eliminar', id=carrito._id) }}" class="btn btn-danger"
+             onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-info text-center">
+    No hay carritos registrados.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
